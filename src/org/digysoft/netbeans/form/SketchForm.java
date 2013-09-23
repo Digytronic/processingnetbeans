@@ -2,15 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package processing;
+package org.digysoft.netbeans.form;
 
 import java.awt.List;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Vector;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -42,11 +41,12 @@ public final class SketchForm extends javax.swing.JFrame {
 
     public List tomarClases() {
         String packageName = "org.digysoft.processing.sketch";
-        commands = new ArrayList<Class<PApplet>>();
+        commands = new ArrayList<>();
         URL root = Thread.currentThread().getContextClassLoader().getResource(packageName.replace(".", "/"));
 
 // Filter .class files.
         File[] files = new File(root.getFile()).listFiles(new FilenameFilter() {
+            @Override
             public boolean accept(File dir, String name) {
                 return name.endsWith(".class");
             }
@@ -152,19 +152,14 @@ public final class SketchForm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SketchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SketchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SketchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SketchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new SketchForm().setVisible(true);
             }

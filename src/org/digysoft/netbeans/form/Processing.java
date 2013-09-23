@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package processing;
+package org.digysoft.netbeans.form;
 
 import org.digysoft.processing.sketch.SketchCirculo;
 
